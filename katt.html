@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillFlow | Belajar Cerdas Setiap Hari</title>
+    <style>
+        :root {
+            --primary: #1a237e; /* Navy Professional */
+            --accent: #ffd700;  /* Gold Success */
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 1.5rem; letter-spacing: 1px; }
+        .statsBar { font-size: 0.8rem; margin-top: 10px; color: var(--accent); }
+
+        /* Main Container */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Card Section */
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .category-tag {
+            background: #e8eaf6;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        h2 { font-size: 1.2rem; margin: 15px 0 10px; }
+
+        /* Action Button */
+        .btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: #283593; transform: translateY(-2px); }
+
+        /* Quiz Box */
+        #quiz-area {
+            display: none;
+            border-top: 2px dashed #ddd;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .option-btn:hover { background: #eceff1; }
+
+        /* Progress Circle */
+        .progress-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .circle {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .success-msg {
+            color: green;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SKILLFLOW</h1>
+    <div class="statsBar">Level 1: Novice | ⚡ 120 Poin XP</div>
+</header>
+
+<div class="container">
+    
+    <div class="progress-box">
+        <div class="circle">1/3</div>
+        <div>
+            <div style="font-size: 0.9rem;">Misi Hari Ini</div>
+            <small style="color: #bbb;">Selesaikan 2 materi lagi untuk mencapai target!</small>
+        </div>
+    </div>
+
+    <div class="card" id="lesson-1">
+        <span class="category-tag">KOMUNIKASI</span>
+        <h2>Teknik "Pause" 3 Detik</h2>
+        <p>Daripada menggunakan kata "hmmm" atau "eeuu", cobalah diam selama 3 detik sebelum menjawab pertanyaan sulit. Ini membuat Anda terlihat lebih tenang dan bijaksana.</p>
+        
+        <button class="btn" onclick="showQuiz()">Coba Latihan Cepat</button>
+
+        <div id="quiz-area">
+            <p><strong>Situasi:</strong> Bos Anda menanyakan data yang belum Anda siapkan. Apa yang Anda lakukan?</p>
+            <button class="option-btn" onclick="completeLesson('A')">A. Menjawab secepat mungkin meski tidak yakin.</button>
+            <button class="option-btn" onclick="completeLesson('B')">B. Berhenti sejenak (diam), tarik napas, lalu jawab dengan jujur.</button>
+        </div>
+        <p id="success" class="success-msg">Hebat! +20 XP. Anda telah mempelajari teknik jeda. ✅</p>
+    </div>
+
+    <div class="card">
+        <span class="category-tag">KEUANGAN</span>
+        <h2>Aturan 50/30/20</h2>
+        <p>Gunakan 50% gaji untuk kebutuhan pokok, 30% untuk keinginan, dan 20% untuk tabungan/investasi. Sederhana, tapi sangat efektif.</p>
+        <button class="btn" onclick="alert('Modul akan dibuka setelah misi pertama selesai!')" style="background: #ccc;">Pelajari Nanti</button>
+    </div>
+
+</div>
+
+<script>
+    function showQuiz() {
+        document.getElementById('quiz-area').style.display = 'block';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    function completeLesson(choice) {
+        if(choice === 'B') {
+            document.getElementById('quiz-area').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            document.querySelector('.circle').innerText = '2/3';
+            document.querySelector('.circle').style.borderColor = '#4caf50';
+        } else {
+            alert("Coba lagi! Ingat prinsip 'Pause' untuk ketenangan.");
+        }
+    }
+</script>
+
+</body>
+</html>
